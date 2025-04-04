@@ -1,10 +1,10 @@
 const https = require('https');
 const WebSocket = require('ws');
 
-// Use the dynamic PORT variable Render provides
-const port = process.env.PORT || 8080;  // Fallback to 8080 if PORT is not provided (for local testing)
+// Use the dynamic PORT environment variable that Render provides
+const port = process.env.PORT || 8080; // Fallback to 8080 for local development
 
-// Create a secure HTTPS server (Render will automatically handle SSL)
+// Create a secure HTTPS server (Render handles SSL for you)
 const server = https.createServer({}, (req, res) => {
   res.writeHead(200);
   res.end("Secure WebSocket Server");
@@ -32,7 +32,7 @@ wss.on('connection', (ws) => {
   });
 });
 
-// Make sure the server listens on the dynamic PORT provided by Render
+// Make sure the server listens on the dynamic port provided by Render
 server.listen(port, '0.0.0.0', () => {
-  console.log(`Secure WebSocket server running on wss://localhost:${port}`);
+  console.log(`Secure WebSocket server running on wss://your-render-app.onrender.com`);
 });
